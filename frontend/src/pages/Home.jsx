@@ -110,10 +110,12 @@ function Home() {
         <section className="hero-section" id="home">
           <div className="hero-content">
             <div className="hero-eyebrow">
-              <span className="eyebrow-icon">✦</span>
-              SMART DISASTER RESPONSE PLATFORM
-            </div>
+             <span className="eyebrow-icon">🌐</span> <span>
 
+              <strong>Unified Disaster Response</strong></span> <span>
+              <small>One platform. Faster coordination. Safer communities.</small>
+             </span>
+            </div>                  
             <h1>
               Be Prepared.
               <span>Stay Safe.</span>
@@ -165,13 +167,7 @@ function Home() {
               </div>
             </div>
 
-            <div className="floating-info">
-              <span className="floating-icon">🌐</span>
-              <div>
-                <strong>Connected Response</strong>
-                <small>Information in one place</small>
-              </div>
-            </div>
+            
           </div>
         </section>
 
@@ -284,4 +280,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Home
