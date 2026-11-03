@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const navigation = {
@@ -9,6 +9,8 @@ const navigation = {
     { label: "My Reports", path: "/my-reports", icon: "▤" },
     { label: "Hospitals", path: "/hospitals", icon: "+" },
     { label: "Shelters", path: "/shelters", icon: "⌂" },
+    { label: "Rescue Force", path: "/citizen/rescue-force", icon: "🛡️" },
+    { label: "My Application Status", path: "/citizen/application-status", icon: "▤" },
     { label: "My Profile", path: "/profile", icon: "●" },
   ],
   volunteer: [
@@ -46,20 +48,20 @@ function Sidebar() {
 
   return (
     <aside className="sdrems-sidebar">
-      <div className="sidebar-heading">
+      <Link to="/" className="sidebar-heading sidebar-home-link">
         <span className="sidebar-brand-icon">✚</span>
         <span>SDREMS</span>
-      </div>
+      </Link>
 
-      <div className="sidebar-user">
+      <Link to="/" className="sidebar-user sidebar-home-link">
         <div className="sidebar-avatar">
           {(user.name || "U").charAt(0).toUpperCase()}
         </div>
-        <div>
+        <div className="sidebar-user-details">
           <strong>{user.name || "SDREMS User"}</strong>
           <span>{role.replace("_", " ")}</span>
         </div>
-      </div>
+      </Link>
 
       <nav className="sidebar-navigation" aria-label="Dashboard navigation">
         {links.map((item) => (

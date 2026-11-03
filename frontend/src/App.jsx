@@ -4,7 +4,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import RescueForce from "./pages/RescueForce";
 import { AuthProvider } from "./context/AuthContext";
 import RescueApplication from "./pages/RescueApplication";
+import ApplicationStatus from "./pages/ApplicationStatus";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdaptiveLayout from "./components/AdaptiveLayout";
 import PlaceholderPage from "./components/PlaceholderPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -30,7 +32,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             
-            <Route path="/volunteer/status" element={<Page title="Application Status" description="Track your rescue force membership application." />} />
+          </Route>
+
+          {/* Public pages that adapt to the user's authentication state */}
+          <Route element={<AdaptiveLayout />}>
             <Route path="/hospitals" element={<Page title="Emergency Hospitals" description="Find emergency medical facilities." />} />
             <Route path="/shelters" element={<Page title="Emergency Shelters" description="Find emergency shelters and safe locations." />} />
             <Route path="/map" element={<Page title="Disaster Map" description="Explore disaster incidents across India." />} />
@@ -38,10 +43,15 @@ function App() {
 
           {/* Authenticated citizen routes */}
           <Route element={<ProtectedRoute allowedRoles={["citizen"]} />}>
+            <Route element={<PublicLayout />}>
+              <Route path="/volunteer/status" element={<ApplicationStatus />} />
+            </Route>
             <Route element={<DashboardLayout />}>
               
                <Route path="/volunteer/apply" element={<RescueApplication category="volunteer" />} />
                <Route path="/professional/apply" element={<RescueApplication category="professional" />} />
+              <Route path="/citizen/rescue-force" element={<RescueForce />} />
+              <Route path="/citizen/application-status" element={<ApplicationStatus />} />
               <Route path="/citizen/dashboard" element={<Page title="Citizen Dashboard" description="Your emergency information and activity." />} />
               <Route path="/report-disaster" element={<Page title="Report a Disaster" description="Submit a disaster incident report." />} />
               <Route path="/sos" element={<Page title="Emergency SOS" description="Request emergency assistance." />} />

@@ -1038,9 +1038,12 @@ button, a {
 }
 
 .dashboard-mobile-brand {
-  display: none;
+  display: inline-flex;
+  align-items: center;
   font-weight: 800;
   color: #102b50;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .sdrems-footer {
@@ -1243,7 +1246,8 @@ button, a {
   }
 
   .dashboard-welcome {
-    display: none;
+    display: inline-flex;
+    font-size: 12px;
   }
 
   .sdrems-public-header nav {
@@ -2233,3 +2237,256 @@ button, a {
     font-size: 12px;
   }
 }
+
+/* SDREMS dashboard navigation improvements */
+
+.sidebar-home-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar-heading:hover,
+.sidebar-user:hover {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.sidebar-user-details {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar-user-details strong {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dashboard-topbar-actions {
+  min-width: 0;
+  flex: 1;
+  justify-content: flex-end;
+  gap: clamp(6px, 1.5vw, 20px);
+}
+
+.dashboard-welcome {
+  min-width: 0;
+  max-width: min(45vw, 360px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: clamp(11px, 1.1vw, 15px);
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+.dashboard-mobile-brand {
+  flex-shrink: 0;
+  font-size: clamp(15px, 1.5vw, 20px);
+}
+
+.dashboard-logout {
+  flex-shrink: 0;
+  padding: clamp(7px, 1vw, 10px) clamp(9px, 1.5vw, 17px);
+}
+
+@media (max-width: 600px) {
+  .dashboard-topbar {
+    gap: 8px;
+  }
+
+  .dashboard-welcome {
+    max-width: 42vw;
+    font-size: 11px;
+  }
+
+  .dashboard-topbar-actions {
+    gap: 5px;
+  }
+
+  .dashboard-logout {
+    font-size: 11px;
+  }
+}
+
+/* Dashboard sidebar home navigation */
+.sidebar-home-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar-home-link:hover {
+  opacity: 0.9;
+}
+
+.sidebar-user-details {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar-user-details strong {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Responsive dashboard header */
+.dashboard-topbar {
+  min-width: 0;
+  gap: 12px;
+}
+
+.dashboard-topbar-actions {
+  min-width: 0;
+  flex: 1;
+  justify-content: flex-end;
+  gap: clamp(6px, 1.5vw, 16px);
+}
+
+.dashboard-welcome {
+  min-width: 0;
+  max-width: min(40vw, 320px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: clamp(11px, 1vw, 14px);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dashboard-welcome:hover {
+  text-decoration: underline;
+}
+
+.dashboard-mobile-brand {
+  flex-shrink: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dashboard-logout {
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .dashboard-topbar {
+    gap: 6px;
+  }
+
+  .dashboard-welcome {
+    max-width: 34vw;
+    font-size: 11px;
+  }
+
+  .dashboard-topbar-actions {
+    gap: 5px;
+  }
+}
+
+/* Compact dashboard identity on tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .dashboard-topbar {
+    gap: 8px;
+  }
+
+  .dashboard-topbar-actions {
+    gap: 8px;
+  }
+
+  .dashboard-welcome {
+    max-width: 180px;
+    font-size: 12px;
+    padding: 5px 6px;
+    border-radius: 5px;
+  }
+
+  .dashboard-logout {
+    padding: 7px 11px;
+    font-size: 12px;
+  }
+}
+
+/* Tablet fixes: full dashboard name and aligned homepage navbar */
+@media (min-width: 651px) and (max-width: 1024px) {
+
+  /* Dashboard: show the complete name and role */
+  .dashboard-topbar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .dashboard-topbar-actions {
+    flex: 1 1 100%;
+    min-width: 0;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  .dashboard-welcome {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    overflow: visible;
+    white-space: normal;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 6px 9px;
+  }
+
+  .dashboard-logout {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  /* Homepage: compact and aligned navbar */
+  .header-inner {
+    padding-left: 14px;
+    padding-right: 14px;
+    gap: 10px;
+  }
+
+  .brand {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .main-nav {
+    gap: 10px;
+    flex-shrink: 1;
+  }
+
+  .main-nav a {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .header-actions {
+    flex-shrink: 0;
+    gap: 6px;
+  }
+
+  .login-button,
+  .register-button {
+    padding: 8px 10px;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .header-actions .login-button {
+    max-width: 155px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+}
+

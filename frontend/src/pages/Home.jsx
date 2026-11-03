@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import heroImage from "../assets/flood-hero.png";
 
 const services = [
@@ -66,6 +67,11 @@ const features = [
 ];
 
 function Home() {
+  const { user, isAuthenticated } = useAuth();
+  const displayRole = user?.role
+    ? user.role.charAt(0).toUpperCase() + user.role.slice(1)
+    : "";
+
   return (
     <div className="sdrems-home">
 
@@ -85,8 +91,24 @@ function Home() {
           </nav>
 
           <div className="header-actions">
-            <Link to="/login" className="login-button">Login</Link>
-            <Link to="/register" className="register-button">Register</Link>
+            {isAuthenticated ? (
+              <>
+                <Link to="/" className="login-button">
+                  {user?.name || "User"} · {displayRole}
+                </Link>
+                <Link
+                  to="/citizen/dashboard"
+                  className="register-button"
+                >
+                  My Dashboard
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="login-button">Login</Link>
+                <Link to="/register" className="register-button">Register</Link>
+              </>
+            )}
           </div>
         </div>
       </header>

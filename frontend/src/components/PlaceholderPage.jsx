@@ -1,11 +1,4 @@
-import { Link } from "react-router-dom";
-
-function PlaceholderPage({
-  title,
-  description,
-  backTo = "/",
-  backLabel = "Back to Home",
-}) {
+function PlaceholderPage({ title, description }) {
   return (
     <main className="sdrems-placeholder">
       <div className="sdrems-placeholder-card">
@@ -15,7 +8,6 @@ function PlaceholderPage({
         <span className="placeholder-status">
           Feature under development
         </span>
-        <Link to={backTo}>{backLabel}</Link>
       </div>
     </main>
   );

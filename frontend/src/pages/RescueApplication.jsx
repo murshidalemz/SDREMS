@@ -224,10 +224,20 @@ function RescueApplication({ category = "volunteer" }) {
       applications = [];
     }
 
+    const blockedStatuses = [
+      "pending",
+      "under_review",
+      "withdrawal_requested",
+      "approved",
+      "suspended",
+    ];
+
+    const currentEmail = user?.email?.trim().toLowerCase();
+
     const alreadyApplied = applications.some(
       (application) =>
-        application.email === user?.email &&
-        application.status !== "rejected"
+        application.email?.trim().toLowerCase() === currentEmail &&
+        blockedStatuses.includes(application.status?.toLowerCase())
     );
 
     if (alreadyApplied) {

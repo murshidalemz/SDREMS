@@ -23,9 +23,9 @@ function DashboardLayout() {
           </Link>
 
           <div className="dashboard-topbar-actions">
-            <span className="dashboard-welcome">
-              Welcome, {user?.name || "User"}
-            </span>
+            <Link to="/" className="dashboard-welcome">
+              {user?.name || "User"} · {(user?.role || "citizen").charAt(0).toUpperCase() + (user?.role || "citizen").slice(1)}
+            </Link>
 
             <button
               type="button"
