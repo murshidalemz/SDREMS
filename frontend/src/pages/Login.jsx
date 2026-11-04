@@ -1,6 +1,28 @@
+
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+
+const DEMO_ADMIN = {
+  name: "Murshid",
+  email: "murshiddrx@gmail.com",
+  password: "Mumushid@786",
+};
+
+const DEMO_RESCUE_ACCOUNTS = [
+  {
+    name: "Rescue Volunteer",
+    email: "volunteer@sdrems.com",
+    password: "Volunteer@123",
+    role: "volunteer",
+  },
+  {
+    name: "Rescue Professional",
+    email: "professional@sdrems.com",
+    password: "Professional@123",
+    role: "professional",
+  },
+];
 
 function Login() {
   const { login } = useAuth();
@@ -22,12 +44,54 @@ function Login() {
     e.preventDefault();
     setError("");
 
+    const normalizedEmail = form.email.trim().toLowerCase();
+
+    // Admin login
+    if (
+      normalizedEmail === DEMO_ADMIN.email &&
+      form.password === DEMO_ADMIN.password
+    ) {
+      login({
+        name: DEMO_ADMIN.name,
+        email: DEMO_ADMIN.email,
+        role: "admin",
+      });
+
+      navigate("/admin/dashboard", { replace: true });
+      return;
+    }
+
+    // Rescue Force demo login
+    const rescueAccount = DEMO_RESCUE_ACCOUNTS.find(
+      (account) =>
+        account.email === normalizedEmail &&
+        account.password === form.password
+    );
+
+    if (rescueAccount) {
+      login({
+        name: rescueAccount.name,
+        email: rescueAccount.email,
+        role: rescueAccount.role,
+        applicationStatus: "approved",
+        membershipStatus: "active",
+        identityVerified: true,
+      });
+
+      navigate("/rescue/dashboard", { replace: true });
+      return;
+    }
+
+    // Registered Citizen login
     const savedUser = JSON.parse(
       localStorage.getItem("sdrems_registered_user") || "null"
     );
 
-    if (!savedUser || savedUser.email !== form.email ||
-        savedUser.password !== form.password) {
+    if (
+      !savedUser ||
+      savedUser.email?.toLowerCase() !== normalizedEmail ||
+      savedUser.password !== form.password
+    ) {
       setError("Invalid email or password. Please register first.");
       return;
     }
@@ -38,9 +102,10 @@ function Login() {
       role: "citizen",
     });
 
-    navigate(location.state?.from?.pathname || "/citizen/dashboard", {
-      replace: true,
-    });
+    navigate(
+      location.state?.from?.pathname || "/citizen/dashboard",
+      { replace: true }
+    );
   };
 
   return (
@@ -91,3 +156,4 @@ function Login() {
 }
 
 export default Login;
+

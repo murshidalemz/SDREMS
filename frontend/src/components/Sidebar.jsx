@@ -18,7 +18,7 @@ const navigation = {
     { label: "Available Incidents", path: "/rescue/incidents", icon: "!" },
     { label: "My Assignments", path: "/rescue/assignments", icon: "▤" },
     { label: "My Availability", path: "/rescue/availability", icon: "◷" },
-    { label: "My Profile", path: "/profile", icon: "●" },
+    
   ],
   professional: [
     { label: "Dashboard", path: "/rescue/dashboard", icon: "⌂" },
@@ -26,7 +26,7 @@ const navigation = {
     { label: "My Assignments", path: "/rescue/assignments", icon: "▤" },
     { label: "My Availability", path: "/rescue/availability", icon: "◷" },
     { label: "My Credentials", path: "/rescue/credentials", icon: "✓" },
-    { label: "My Profile", path: "/profile", icon: "●" },
+   
   ],
   admin: [
     { label: "Dashboard", path: "/admin/dashboard", icon: "⌂" },

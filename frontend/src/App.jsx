@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-
+import RescueDashboard from "./pages/RescueDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import RescueForce from "./pages/RescueForce";
 import { AuthProvider } from "./context/AuthContext";
 import RescueApplication from "./pages/RescueApplication";
@@ -63,7 +64,10 @@ function App() {
           {/* Approved responders only */}
           <Route element={<ProtectedRoute allowedRoles={["volunteer", "professional"]} />}>
             <Route element={<DashboardLayout />}>
-              <Route path="/rescue/dashboard" element={<Page title="Rescue Dashboard" description="Your rescue response workspace." />} />
+              <Route
+  path="/rescue/dashboard"
+  element={<RescueDashboard />}
+/>
               <Route path="/rescue/incidents" element={<Page title="Available Incidents" description="Review incidents eligible for your response." />} />
               <Route path="/rescue/assignments" element={<Page title="My Assignments" description="Manage your rescue assignments." />} />
               <Route path="/rescue/availability" element={<Page title="My Availability" description="Manage your response availability." />} />
@@ -74,7 +78,10 @@ function App() {
           {/* Admin routes */}
           <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
             <Route element={<DashboardLayout />}>
-              <Route path="/admin/dashboard" element={<Page title="Admin Dashboard" description="Manage SDREMS operations." />} />
+              <Route
+  path="/admin/dashboard"
+  element={<AdminDashboard />}
+/>
               <Route path="/admin/incidents" element={<Page title="Incident Management" description="Review and coordinate disaster incidents." />} />
               <Route path="/admin/volunteers" element={<Page title="Volunteer Verification" description="Review and verify responder applications." />} />
               <Route path="/admin/teams" element={<Page title="Rescue Teams" description="Manage rescue force membership." />} />
