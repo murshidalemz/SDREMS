@@ -2490,3 +2490,55 @@ button, a {
   }
 }
 
+
+/* Dashboard identity: prevent name and role from being clipped */
+@media (max-width: 1024px) {
+  .dashboard-topbar {
+    min-width: 0;
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+  .dashboard-topbar-actions {
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: 10px;
+  }
+
+  .dashboard-welcome {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+    display: block;
+    overflow: visible;
+    white-space: normal;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+    line-height: 1.4;
+    font-size: 13px;
+  }
+}
+
+/* Mobile: place the full identity and Logout below the brand */
+@media (max-width: 600px) {
+  .dashboard-topbar {
+    align-items: center;
+  }
+
+  .dashboard-topbar-actions {
+    width: 100%;
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+
+  .dashboard-welcome {
+    flex: 1 1 auto;
+    max-width: none;
+    font-size: 12px;
+  }
+
+  .dashboard-logout {
+    flex-shrink: 0;
+  }
+}
+
